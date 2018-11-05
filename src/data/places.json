@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Whit's Frozen Custard",
+    "street": "428 South Main Street",
+    "city": "Davidson",
+    "state": "NC",
+    "zip": "28036",
+    "phone": "(980) 231-5365",
+    "url": "http://www.whitsdavidson.com/",
+    "coord": {"lat":35.496332,"lng":-80.852495}
+  },
+  {
+    "name": "Ben & Jerry's",
+    "street": "202 South Main Street",
+    "city": "Davidson",
+    "state": "NC",
+    "zip": "28036",
+    "phone": "(704) 892-0604",
+    "url": "http://www.benjerry.com/",
+    "coord": {"lat":35.498119,"lng":-80.849265}
+  },
+  {
+    "name": "Carolina Cones",
+    "street": "20801 North Main Street",
+    "city": "Davidson",
+    "state": "NC",
+    "zip": "28031",
+    "phone": "(704) 892-8190",
+    "url": "",
+    "coord": {"lat":35.343776,"lng":-80.840595}
+  },
+  {
+    "name": "Soda Shop",
+    "street": "104 South Main Street",
+    "city": "Davidson",
+    "state": "NC",
+    "zip": "28036",
+    "phone": "(704) 896-7743",
+    "url": "http://www.davidsonsodashop.com/",
+    "coord": {"lat":35.498954,"lng":-80.848793}
+  },
+  {
+    "name": "Davidson Chocolate Co.",
+    "street": "610 Jetton Street #150",
+    "city": "Davidson",
+    "state": "NC",
+    "zip": "28036",
+    "phone": "(704) 896-7245",
+    "url": "http://www.davisonchocolate.com/",
+    "coord": {"lat":35.478110,"lng":-80.819501}
+  },
+  {
+    "name": "Baskin-Robbins",
+    "street": "19921 Zion Ave. C-1",
+    "city": "Cornelius",
+    "state": "NC",
+    "zip": "28031",
+    "phone": "(980) 231-5764",
+    "url": "http://www.baskinrobbins.com/",
+    "coord": {"lat":35.475080,"lng":-80.853208}
+  },
+  {
+    "name": "Two Scoops Creamery LKN",
+    "street": "119 Landings Drive Suite 104",
+    "city": "Mooresville",
+    "state": "NC",
+    "zip": "28117",
+    "phone": "(980) 444-3800",
+    "url": "http://www.twoscoopscreamery.com/",
+    "coord": {"lat":35.221905,"lng":-90.822442}
+  }
+]
