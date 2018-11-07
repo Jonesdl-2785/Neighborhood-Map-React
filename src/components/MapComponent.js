@@ -197,7 +197,7 @@ class MapComponent extends Component {
     )
   }
 }
-
+//correct issue 
 export default GoogleApiWrapper({
   apiKey: GOOGLE_MAP_API_KEY
 })(MapComponent)
