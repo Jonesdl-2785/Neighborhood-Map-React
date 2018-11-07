@@ -1,0 +1,46 @@
+// closeAllMarkers = () => {
+//   const markers = this.state.markers.map(marker => {
+//     marker.isOpen = false;
+//     return marker;
+//   });
+//   this.setState({ markers: Object.assign(this.state.markers, markers) });
+// };
+//
+// handleMarkerClick = (marker) => {
+//   this.closeAllMarkers();
+//   marker.isOpen = true;
+//   this.setState({markers: Object.assign(this.state.markers,marker) });
+//   let venue = this.state.venus.find((venue => venue.id == marker.id))
+//   FourSquareAPI.getVenueDetails(marker.id).then(res => {
+//     let newVenue = Object.assign(venue, res.response.venue);
+//     this.setState({venues: Object.assign(this.state.venues, newVenue)
+//     });
+//
+// componentDidMount = () => {
+//   FourSquareAPI.search({
+//     near: 'Davidson, NC',
+//     query: 'Ice Cream Shop',
+//     limit: 15
+//   }).then(res => {
+//       const { venues } = res.response
+//       const { center } = res.response.geocode.feature.geometry
+//       const markers = venues.map(venue => {
+//         return {
+//           lat: venue.location.lat,
+//           lng: venue.location.lng,
+//           isOpen: false,
+//           isVisible: true,
+//           id: venue.id
+//         };
+//       })
+//       this.setState({ venues, center, markers });
+//   })
+// } = this.props;
+// if (!google) {
+//   return null
+// }
+//
+// let pos = position || mapCenter;
+// if (!(pos instanceof google.maps.LatLng)) {
+//   pos = new google.maps.LatLng(pos.lat, pos.lng);
+// }
