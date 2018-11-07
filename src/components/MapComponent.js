@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // import GoogleMapReact from 'google-map-react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
-const ID_CLIENT = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H"
-const SECRET_CLIENT = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS"
-const GOOGLE_MAP_API_KEY = "AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g"
-const VERSION = "20181103"
+const GOOGLE_MAP_API_KEY = "AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g";
+const ID_CLIENT = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H";
+const SECRET_CLIENT = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS";
+const VERSION = "20181103";
 
 class MapComponent extends Component {
   state = {
-    // TODO: Create a map variable
+    // Create a map variable
     map: null,
     // Create a new blank array for all the listing markers.
     markers: [],
@@ -37,8 +37,9 @@ class MapComponent extends Component {
     // const options = typeof input === 'function' ? input(props) : input;
 
     // Ignore when options are not changed
-    if (!props.selectedIndex || (this.state.currentMarker && (this.state.markers[props.selectedIndex] !== this.state.currentMarker))) {
-      this.closeInfoWindow();
+    if (!props.selectedIndex || (this.state.currentMarker &&
+        (this.state.markers[props.selectedIndex] !== this.state.currentMarker))) {
+        this.closeInfoWindow();
     }
 
     if (props.selectedIndex === null || typeof(props.selectedIndex) === 'undefined') {
@@ -46,7 +47,7 @@ class MapComponent extends Component {
     };
 
     // Initialize with new options
-    this.onHandleMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex]);
+    this.onMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex]);
   }
 
   mapPrep = (props, map) => {
@@ -71,7 +72,7 @@ class MapComponent extends Component {
         .filter(item => item.name.includes(props.name) || props.name.includes(item.name));
   }
 
-  onHandleMarkerClick = (props, marker, event) => {
+  onMarkerClick = (props, marker, event) => {
     this.closeInfoWindow();
 
     let baseURL = `https://api.foursquare.com/v2/venues/search?client_id=${ID_CLIENT}&client_secret=${SECRET_CLIENT}&v=${VERSION}&radius=50&ll=${props.position.lat},${props.position.lng}&llAcc=50`;
@@ -112,14 +113,16 @@ class MapComponent extends Component {
         }
     })
 
+  }
+
   updateMarkers = (venues) => {
     if (!venues)
         return;
 
-    this.state.markers.forEach(marker.setMap(null));
+    this.state.markers.forEach(marker => marker.setMap(null));
 
     let markerProps = [];
-    let markers = venues.map((venues, i) => {
+    let markers = venues.map((venue, i) => {
       let mProps = {
         key: i,
         i,
@@ -197,7 +200,7 @@ class MapComponent extends Component {
     )
   }
 }
-//correct issue 
+
 export default GoogleApiWrapper({
   apiKey: GOOGLE_MAP_API_KEY
 })(MapComponent)

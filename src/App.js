@@ -20,11 +20,14 @@ class App extends Component {
       open: false
     };
 
+  styles = {
+
+  }
     componentDidMount = () => {
-    this.setState({
-      ...this.state,
-      filtered: this.filterVenues(this.state.all, "")
-    });
+    // this.setState({
+    //   ...this.state,
+    //   filtered: this.filterVenues(this.state.all, "")
+    // });
   }
 
 
