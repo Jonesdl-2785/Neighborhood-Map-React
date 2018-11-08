@@ -4,9 +4,8 @@ import MapComponent from './components/MapComponent';
 // import FourSquareAPI from './API/venue';
 import venues from './data/venues.json';
 import VenueDrawer from './components/VenueDrawer';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-
+//import { withStyles } from '@material-ui/core/styles';
+//import Button from '@material-ui/core/Button';
 import './App.css';
 
 class App extends Component {
@@ -93,4 +92,5 @@ class App extends Component {
      );
    }
 }
+
  export default App;
