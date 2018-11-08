@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // import GoogleMapReact from 'google-map-react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 
-const GOOGLE_MAP_API_KEY = "AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g";
-const ID_CLIENT = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H";
-const SECRET_CLIENT = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS";
+const MAP_KEY = "AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g";
+const CLIENT_ID = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H";
+const CLIENT_SECRET = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS";
 const VERSION = "20181103";
 
 class MapComponent extends Component {
@@ -14,6 +14,7 @@ class MapComponent extends Component {
     // Create a new blank array for all the listing markers.
     markers: [],
     markerProps: [],
+    places: [],
     currentMarker: null,
     currentMarkerProps: null,
     openInfoWindow: false
@@ -21,13 +22,13 @@ class MapComponent extends Component {
 
   componentDidMount = () => {}
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps = (props) => {
     this.setState({firstDrop: false});
 
     // Do not update input if it's not dynamic
-    if (this.state.markers.length !== props.venues.length) {
+    if (this.state.markers.length !== props.places.length) {
       this.closeInfoWindow();
-      this.updateMarkers(props.venues);
+      this.updateMarkers(props.places);
       this.setState({currentMarker: null});
       return;
     }
@@ -52,7 +53,7 @@ class MapComponent extends Component {
 
   mapPrep = (props, map) => {
     this.setState({map});
-    this.updateMarkers(this.props.venues);
+    this.updateMarkers(this.props.places);
   }
 
   closeInfoWindow = () => {
@@ -67,7 +68,7 @@ class MapComponent extends Component {
 
   getBusinessData = (props, data) => {
     return data
-        .res
+        .response
         .venues
         .filter(item => item.name.includes(props.name) || props.name.includes(item.name));
   }
@@ -75,7 +76,7 @@ class MapComponent extends Component {
   onMarkerClick = (props, marker, event) => {
     this.closeInfoWindow();
 
-    let baseURL = `https://api.foursquare.com/v2/venues/search?client_id=${ID_CLIENT}&client_secret=${SECRET_CLIENT}&v=${VERSION}&radius=50&ll=${props.position.lat},${props.position.lng}&llAcc=50`;
+    let baseURL = `https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=100&11=${props.position.lat},${props.position.lng}&11Acc=100`;
     let headers = new Headers();
     let request = new Request(baseURL, {
       method: 'GET',
@@ -93,7 +94,7 @@ class MapComponent extends Component {
           };
 
           if (currentMarkerProps.foursquare) {
-            let baseURL = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${ID_CLIENT}&client_secret=${SECRET_CLIENT}&v=${VERSION}`;
+            let baseURL = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
             fetch(baseURL)
                 .then(res => res.json())
                 .then(result => {
@@ -115,29 +116,29 @@ class MapComponent extends Component {
 
   }
 
-  updateMarkers = (venues) => {
-    if (!venues)
+  updateMarkers = (places) => {
+    if (!places)
         return;
 
     this.state.markers.forEach(marker => marker.setMap(null));
 
     let markerProps = [];
-    let markers = venues.map((venue, i) => {
+    let markers = places.map((place, i) => {
       let mProps = {
         key: i,
         i,
-        name: venue.name,
-        position: venue.pos,
-        url: venue.url,
+        name: place.name,
+        position: place.pos,
+        url: place.url
       };
       markerProps.push(mProps);
 
       let animation = this.state.firstDrop ? this.props.google.maps.Animation.DROP : null;
       let marker = new this //{google.maps.Marker}
-          .maps
-          .google
           .props
-          .Marker({position: venue.pos,
+          .google
+          .maps
+          .Marker({position: place.pos,
                    map: this.state.map,
                    animation,
                    draggable: true});
@@ -154,10 +155,9 @@ class MapComponent extends Component {
     const style = {
       height: '100%',
       width: '100%',
-      // margin: '0',
-      // padding: '0'
+      margin: '0',
+      padding: '0'
     }
-
     const center = {
       lat: this.props.lat,
       lng: this.props.lng
@@ -172,12 +172,9 @@ class MapComponent extends Component {
         google={this.props.google}
         onReady={this.mapPrep}
         style={style}
-        initCenter={center}
+        initialCenter={center}
         zoom={this.props.zoom}
         onClick={this.closeInfoWindow}>
-
-      <Marker onClick={this.onMarkerClick} name={'Current location'}/>
-
       <InfoWindow
         marker={this.state.currentMarker}
         isVisible={this.state.openInfoWindow}
@@ -202,5 +199,5 @@ class MapComponent extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: GOOGLE_MAP_API_KEY
+  apiKey: MAP_KEY
 })(MapComponent)

@@ -44,5 +44,6 @@
 // if (!(pos instanceof google.maps.LatLng)) {
 //   pos = new google.maps.LatLng(pos.lat, pos.lng);
 // }
+// <Marker onClick={this.onMarkerClick} name={'Current location'}/>
 
 testing to see if able to merge

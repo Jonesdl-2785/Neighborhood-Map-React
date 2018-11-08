@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import MapComponent from './components/Map';
 import MapComponent from './components/MapComponent';
 // import FourSquareAPI from './API/venue';
-import venues from './data/venues.json';
+import places from './data/places.json';
 import VenueDrawer from './components/VenueDrawer';
 //import { withStyles } from '@material-ui/core/styles';
 //import Button from '@material-ui/core/Button';
@@ -10,16 +10,16 @@ import './App.css';
 
 class App extends Component {
       state = {
-        lat: 35.4993,
-        lng: -80.8487,
-          //venue: [],
-          //markers: [],
-          zoom: 12,
-          //center: [],
-          all: venues,
-          filtered: null,
-          open: false
-        };
+        lat: 	35.499302,
+        lng: 	-80.848686,
+        // venue: [],
+         markers: [],
+        zoom: 12,
+        // center: [],
+        all: places,
+        filtered: null,
+        open: false
+      };
 
       styles = {
         menuButton: {
@@ -37,18 +37,18 @@ class App extends Component {
          header: {
            marginTop: "0px"
          }
-       }
+       };
 
-        componentDidMount = () => {
+       componentDidMount = () => {
         this.setState({
           ...this.state,
-          filtered: this.filterVenues(this.state.all, "")
+          filtered: this.filterPlaces(this.state.all, "")
         });
       }
 
-      toggleDrawer = (side, open) => () => {
+      toggleDrawer = () => {
         this.setState({
-          [side]: open,
+          open: !this.state.open
         });
       };
 
@@ -56,12 +56,12 @@ class App extends Component {
         this.setState({
           ...this.state,
           selectedIndex: null,
-          filtered: this.filterVenues(this.state.all, query)
+          filtered: this.filterPlaces(this.state.all, query)
         });
       }
 
-      filterVenues = (venues, query) => {
-        return venues.filter(venue => venue.name.toLowerCase().includes(query.toLowerCase()));
+      filterPlaces = (places, query) => {
+        return places.filter(place => place.name.toLowerCase().includes(query.toLowerCase()));
       }
 
       clickListItem = (i) => {
@@ -72,7 +72,10 @@ class App extends Component {
        return (
          <div className="App" role="main">
            <div>
-             <h1>Davidson, NC - Ice Cream Shops</h1>
+             <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
+              <i className="fa fa-bars"></i>
+             </button>
+             <h2>Davidson, NC - Ice Cream Shops</h2>
            </div>
            <MapComponent
              aria-label="Map"
