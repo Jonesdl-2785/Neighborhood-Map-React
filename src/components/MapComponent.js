@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import GoogleMapReact from 'google-map-react';
 import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
-
+const endPoint = "https://api.foursquare.com/v2/venues/explore?"
 const MAP_KEY = "AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g";
 const CLIENT_ID = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H";
 const CLIENT_SECRET = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS";
@@ -76,9 +76,9 @@ class MapComponent extends Component {
   onMarkerClick = (props, marker, event) => {
     this.closeInfoWindow();
 
-    let baseURL = `https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=100&11=${props.position.lat},${props.position.lng}&11Acc=100`;
+    let url = `https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=100&11=${props.position.lat},${props.position.lng}&11Acc=100`;
     let headers = new Headers();
-    let request = new Request(baseURL, {
+    let request = new Request(url, {
       method: 'GET',
       headers
     });
@@ -87,22 +87,21 @@ class MapComponent extends Component {
     fetch(request)
         .then(res => res.json())
         .then(result => {
-          let shops = this.getBusinessData(props, result);
+          let ice_cream = this.getBusinessData(props, result);
           currentMarkerProps = {
               ...props,
-              foursquare: shops[0]
+              foursquare: ice_cream[0]
           };
 
           if (currentMarkerProps.foursquare) {
-            let baseURL = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
-            fetch(baseURL)
+            let url = `https://api.foursquare.com/v2/venues/${ice_cream[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
+            fetch(url)
                 .then(res => res.json())
                 .then(result => {
                     currentMarkerProps = {
                       ...currentMarkerProps,
                       images: result.res.photos
                   };
-
                   if (this.state.currentMarker)
                       this.state.currentMarker.setAnimation(null);
                   marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
@@ -182,17 +181,20 @@ class MapComponent extends Component {
         <div>
             <h3>{cmProps && cmProps.name}</h3>
             {cmProps && cmProps.url ? (
-              <a href={cmProps.url}>Site</a>
+              <a href={cmProps.url}>To Site</a>
             ) : ""}
             {cmProps && cmProps.images ? (
               <div>
-                <img alt={cmProps.name + ' dessert photo'} src={cmProps.images[0].prefix + '150x150' + cmProps.images.items[0].suffix}/>
-                <p>Courtesy of Foursquare</p>
+                <img
+                  alt={cmProps.name + ' dessert photo'}
+                  src={cmProps.images[0].prefix + '100x100' + cmProps.images.items[0].suffix}/>
+                  <p>Courtesy of Foursquare</p>
               </div>
             ) : ""
           }
         </div>
       </InfoWindow>
+
     </Map>
     )
   }

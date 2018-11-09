@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import MapComponent from './components/MapComponent';
 // import FourSquareAPI from './API/venue';
 import places from './data/places.json';
-import VenueDrawer from './components/VenueDrawer';
+import ListDrawer from './components/ListDrawer';
 //import { withStyles } from '@material-ui/core/styles';
 //import Button from '@material-ui/core/Button';
 import './App.css';
@@ -50,7 +50,7 @@ class App extends Component {
         this.setState({
           open: !this.state.open
         });
-      };
+      }
 
       updateQuery = (query) => {
         this.setState({
@@ -71,7 +71,7 @@ class App extends Component {
      render = () => {
        return (
          <div className="App" role="main">
-           <div>
+           <div id="map">
              <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
               <i className="fa fa-bars"></i>
              </button>
@@ -82,14 +82,14 @@ class App extends Component {
              lat={this.state.lat}
              lng={this.state.lng}
              zoom={this.state.zoom}
-             venues={this.state.selectedIndex}
+             places={this.state.selectedIndex}
              clickListItem={this.clickListItem}/>
-           <VenueDrawer
+           <ListDrawer
              aria-label="List"
-             venus={this.state.filtered}
+             places={this.state.filtered}
              open={this.state.open}
              toggleDrawer={this.toggleDrawer}
-             filterLocations={this.updateQuery}
+             filterPlaces={this.updateQuery}
              clickListItem={this.clickListItem}/>
          </div>
      );

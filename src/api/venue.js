@@ -1,7 +1,7 @@
 
 // // Venue Details - Foursquare
 // class Helper {
-//   static baseURL() {
+//   static url() {
 //     return 'https://api.foursquare.com/v2/';
 //   }
 //
@@ -36,7 +36,7 @@
 //         headers: Helper.headers()
 //       };
 //
-//       return fetch(`${Helper.baseURL()
+//       return fetch(`${Helper.url()
 //         }${endPoint}?${Helper.auth()}&${Helper.urlBuilder(
 //         urlParams
 //       )}`,
@@ -65,7 +65,7 @@
 
 // Venue Details - Foursquare
 class Helper {
-  static baseURL() {
+  static url() {
     return 'https://api.foursquare.com/v2'
   }
 
@@ -97,7 +97,7 @@ class Helper {
         headers: Helper.headers()
       };
 
-      return fetch(`${Helper.baseURL()
+      return fetch(`${Helper.url()
         }${endPoint}?${Helper.auth()}&${Helper.urlManager(
         urlParams
       )}`,
