@@ -12,6 +12,7 @@ This is a SPA (single page application) Map App built using React and features i
 - Third Party API, Foursquare Provides venue information, if available.
 
 ## Project Demo
+Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/).
 ## Requirements
 ## How to Install
 ## Resources
@@ -27,4 +28,3 @@ This is a SPA (single page application) Map App built using React and features i
 ## Project Future Development
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
