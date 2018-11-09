@@ -1,4 +1,4 @@
-# Meighborhood React App
+# Neighborhood React App
 
 ## Overview
 
