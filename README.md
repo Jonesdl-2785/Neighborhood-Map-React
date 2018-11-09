@@ -15,7 +15,7 @@ This is a SPA (single page application) Map App built using React and features i
 ## Requirements
 ## How to Install
 ## Resources
--### Tools
+-### Tools <br>
 -### Other reousrces
 
 ## Project Skeleton
