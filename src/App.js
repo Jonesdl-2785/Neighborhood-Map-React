@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import MapComponent from './components/Map';
 import MapComponent from './components/MapComponent';
 // import FourSquareAPI from './API/venue';
-import places from './data/places.json';
+import locations from './data/locations.json';
 import ListDrawer from './components/ListDrawer';
 //import { withStyles } from '@material-ui/core/styles';
 //import Button from '@material-ui/core/Button';
@@ -13,10 +13,10 @@ class App extends Component {
         lat: 	35.499302,
         lng: 	-80.848686,
         // venue: [],
-         markers: [],
+        markers: [],
         zoom: 8,
         // center: [],
-        all: places,
+        all: locations,
         filtered: null,
         open: false
       };
@@ -38,11 +38,14 @@ class App extends Component {
            marginTop: "0px"
          }
        };
-       
+
        componentDidMount = () => {
         this.setState({
           ...this.state,
-          filtered: this.filterPlaces(this.state.all, "")
+          filtered: this.filterLocations(this.state.all, ""),
+          // near: 'Davidson, NC',
+          // query: 'Ice Cream Shop',
+          // limit: 25
         });
       }
 
@@ -56,12 +59,12 @@ class App extends Component {
         this.setState({
           ...this.state,
           selectedIndex: null,
-          filtered: this.filterPlaces(this.state.all, query)
+          filtered: this.filterLocations(this.state.all, query)
         });
       }
 
-      filterPlaces = (places, query) => {
-        return places.filter(place => place.name.toLowerCase().includes(query.toLowerCase()));
+      filterLocations = (locations, query) => {
+        return locations.filter(location => location.name.toLowerCase().includes(query.toLowerCase()));
       }
 
       clickListItem = (i) => {
@@ -75,22 +78,25 @@ class App extends Component {
              <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
               <i className="fa fa-bars"></i>
              </button>
-             <h2>Davidson, NC - Ice Cream Shops</h2>
+             <h2>Davidson, NC - Vegan Restaurants</h2>
            </div>
            <MapComponent
              aria-label="Map"
              lat={this.state.lat}
              lng={this.state.lng}
              zoom={this.state.zoom}
-             places={this.state.selectedIndex}
+             locations={this.state.filtered}
+             selectedIndex={this.state.selectedIndex}
              clickListItem={this.clickListItem}/>
            <ListDrawer
              aria-label="List"
-             places={this.state.filtered}
+             locations={this.state.filtered}
              open={this.state.open}
              toggleDrawer={this.toggleDrawer}
-             filterPlaces={this.updateQuery}
+             filterLocations={this.updateQuery}
+             selectedIndex={this.state.selectedIndex}
              clickListItem={this.clickListItem}/>
+
          </div>
      );
    }

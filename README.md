@@ -14,7 +14,23 @@ This is a SPA (single page application) Map App built using React and features i
 ## Project Demo
 Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/).
 ## Requirements
+- npm:
+
+-- npm install --save google-map-react
+ or
+- yarn:
+--yarn add google-map-react
+
+- npm start
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Google Maps API (or other Map api)
+- Third Party API [Foursquare](https://developer.foursquare.com/)
 ## How to Install
+Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesdl-2785/Neighborhood-Map-React.git)
+-- Create a directry for the project on your local machine.
+-- Change to your newly created directory.
+-- Run npm install
+-- Run npm start
 ## Resources
 -### Tools <br>
 -### Other reousrces
@@ -26,5 +42,3 @@ Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/).
 ## Credits
 
 ## Project Future Development
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

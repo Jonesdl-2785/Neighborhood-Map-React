@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Drawer from "@material-ui/core/Drawer";
-
+import  { withStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 class ListDrawer extends Component {
   state = {
     open: false,
@@ -59,13 +60,13 @@ class ListDrawer extends Component {
               onChange={event => this.updateQuery(event.target.value)}
               value={this.state.query} />
             <ul style={this.styles.noBullets}>
-              {this.props.places &&
-                this.props.places.map((place, i) => {
+              {this.props.locations &&
+                this.props.locations.map((location, i) => {
                   return (
                     <li style={this.styles.listItem} key={i}>
                       <button
                           style={this.styles.listLink} key={i}
-                          onClick={event => this.props.clickListItem(i)}>{place.name}
+                          onClick={event => this.props.clickListItem(i)}>{location.name}
                       </button>
                     </li>
                   );

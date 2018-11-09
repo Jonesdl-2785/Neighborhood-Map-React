@@ -7,6 +7,7 @@ const CLIENT_ID = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H";
 const CLIENT_SECRET = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS";
 const VERSION = "20181103";
 // const endPoint = "https://api.foursquare.com/v2/venues/explore?"
+
 class MapComponent extends Component {
   state = {
     // Create a map variable
@@ -14,22 +15,22 @@ class MapComponent extends Component {
     // Create a new blank array for all the listing markers.
     markers: [],
     markerProps: [],
-    places: "",
-    currentMarker: null,
-    currentMarkerProps: null,
-    openInfoWindow: false
+    // locations: [],
+    activeMarker: null,
+    activeMarkerProps: null,
+    showingInfoWindow: false
   };
 
   componentDidMount = () => {}
 
   componentWillReceiveProps(props) {
-    this.setState({firstDrop: false});
+    this.setState({ firstDrop: false });
 
     // Do not update input if it's not dynamic
-    if (this.state.markers.length !== props.places.length) {
+    if (this.state.markers.length !== props.locations.length) {
         this.closeInfoWindow();
-        this.updateMarkers(props.places);
-        this.setState({currentMarker: null});
+        this.updateMarkers(props.locations);
+        this.setState({activeMarker: null});
         return;
     }
 
@@ -38,8 +39,8 @@ class MapComponent extends Component {
     // const options = typeof input === 'function' ? input(props) : input;
 
     // Ignore when options are not changed
-    if (!props.selectedIndex || (this.state.currentMarker &&
-        (this.state.markers[props.selectedIndex] !== this.state.currentMarker))) {
+    if (!props.selectedIndex || (this.state.activeMarker &&
+        (this.state.markers[props.selectedIndex] !== this.state.activeMarker))) {
         this.closeInfoWindow();
     }
 
@@ -51,19 +52,19 @@ class MapComponent extends Component {
     this.onMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex]);
   }
 
-  mapPrep = (props, map) => {
+  mapReady = (props, map) => {
     this.setState({map});
-    this.updateMarkers(this.props.places);
+    this.updateMarkers(this.props.locations);
   }
 
   closeInfoWindow = () => {
-    this.state.currentMarker && this
+    this.state.activeMarker && this
         .state
-        .currentMarker
+        .activeMarker
         .setAnimation(null);
-    this.setState({openInfoWindow: false,
-                  currentMarker: null,
-                  currentMarkerProps: null});
+    this.setState({showingInfoWindow: false,
+                  activeMarker: null,
+                  activeMarkerProps: null});
   }
 
   getBusinessData = (props, data) => {
@@ -83,52 +84,55 @@ class MapComponent extends Component {
       headers
     });
 
-    let currentMarkerProps;
+    let activeMarkerProps;
     fetch(request)
         .then(res => res.json())
         .then(result => {
-          let shops = this.getBusinessData(props, result);
-          currentMarkerProps = {
+          let restaurant = this.getBusinessData(props, result);
+          activeMarkerProps = {
               ...props,
-              foursquare: shops[0]
+              foursquare: restaurant[0],
+              // near: 'Davidson, NC',
+              // query: 'Ice Cream Shop',
+              // limit: 15
           };
 
-          if (currentMarkerProps.foursquare) {
-            let url = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
+          if (activeMarkerProps.foursquare) {
+            let url = `https://api.foursquare.com/v2/venues/${restaurant[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
             fetch(url)
-                .then(res => res.json())
+                .then(response => response.json())
                 .then(result => {
-                    currentMarkerProps = {
-                      ...currentMarkerProps,
-                      images: result.res.photos
+                    activeMarkerProps = {
+                      ...activeMarkerProps,
+                      images: result.response.photos
                   };
-                  if (this.state.currentMarker)
-                      this.state.currentMarker.setAnimation(null);
+                  if (this.state.activeMarker)
+                      this.state.activeMarker.setAnimation(null);
                   marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
-                  this.setState({openInfoWindow: true, currentMarker: marker, currentMarkerProps});
+                  this.setState({showingInfoWindow: true, activeMarker: marker, activeMarkerProps});
                 })
         } else {
             marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
-            this.setState({openInfoWindow: true, currentMarker: marker, currentMarkerProps});
+            this.setState({showingInfoWindow: true, activeMarker: marker, activeMarkerProps});
         }
     })
 
   }
 
-  updateMarkers = (places) => {
-    if (!places)
+  updateMarkers = (locations) => {
+    if (!locations)
         return;
 
     this.state.markers.forEach(marker => marker.setMap(null));
 
     let markerProps = [];
-    let markers = places.map((place, i) => {
+    let markers = locations.map((location, i) => {
       let mProps = {
         key: i,
         i,
-        name: place.name,
-        position: place.pos,
-        url: place.url
+        name: location.name,
+        position: location.pos,
+        url: location.url
       };
       markerProps.push(mProps);
 
@@ -137,7 +141,7 @@ class MapComponent extends Component {
           .props
           .google
           .maps
-          .Marker({position: place.pos,
+          .Marker({position: location.pos,
                    map: this.state.map,
                    animation,
                    draggable: true});
@@ -160,32 +164,32 @@ class MapComponent extends Component {
       lng: this.props.lng
     }
 
-    let cmProps = this.state.currentMarkerProps;
+    let amProps = this.state.activeMarkerProps;
 
     return (
       <Map
         role='application'
         aria-label='map'
         google={this.props.google}
-        onReady={this.mapPrep}
+        onReady={this.mapReady}
         style={style}
         initialCenter={center}
         zoom={this.props.zoom}
         onClick={this.closeInfoWindow}>
       <InfoWindow
-        marker={this.state.currentMarker}
-        isVisible={this.state.openInfoWindow}
+        marker={this.state.activeMarker}
+        isVisible={this.state.showingInfoWindow}
         onClose={this.onInfoWindowClose}>
         <div>
-            <h3>{cmProps && cmProps.name}</h3>
-            {cmProps && cmProps.url ? (
-              <a href={cmProps.url}>To Site</a>
+            <h3>{amProps && amProps.name}</h3>
+            {amProps && amProps.url ? (
+              <a href={amProps.url}>To Site</a>
             ) : ""}
-            {cmProps && cmProps.images ? (
+            {amProps && amProps.images ? (
               <div>
                 <img
-                  alt={cmProps.name + ' dessert photo'}
-                  src={cmProps.images[0].prefix + '100x100' + cmProps.images.items[0].suffix}/>
+                  alt={amProps.name + ' restaurant photo'}
+                  src={amProps.images.items[0].prefix + '100x100' + amProps.images.items[0].suffix}/>
                   <p>Courtesy of Foursquare</p>
               </div>
             ) : ""
