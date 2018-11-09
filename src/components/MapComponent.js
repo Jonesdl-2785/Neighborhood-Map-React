@@ -76,7 +76,7 @@ class MapComponent extends Component {
   onMarkerClick = (props, marker, event) => {
     this.closeInfoWindow();
 
-    let url = `https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=100&11=${props.position.lat},${props.position.lng}&11Acc=100`;
+    let url = `https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=50&ll=${props.position.lat},${props.position.lng}&llAcc=50`;
     let headers = new Headers();
     let request = new Request(url, {
       method: 'GET',
@@ -87,14 +87,14 @@ class MapComponent extends Component {
     fetch(request)
         .then(res => res.json())
         .then(result => {
-          let ice_cream = this.getBusinessData(props, result);
+          let shops = this.getBusinessData(props, result);
           currentMarkerProps = {
               ...props,
-              foursquare: ice_cream[0]
+              foursquare: shops[0]
           };
 
           if (currentMarkerProps.foursquare) {
-            let url = `https://api.foursquare.com/v2/venues/${ice_cream[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
+            let url = `https://api.foursquare.com/v2/venues/${shops[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
             fetch(url)
                 .then(res => res.json())
                 .then(result => {
@@ -192,7 +192,6 @@ class MapComponent extends Component {
           }
         </div>
       </InfoWindow>
-
     </Map>
     )
   }
