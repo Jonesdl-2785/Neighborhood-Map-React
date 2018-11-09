@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 // import GoogleMapReact from 'google-map-react';
 import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
-const endPoint = "https://api.foursquare.com/v2/venues/explore?"
+
 const MAP_KEY = "AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g";
 const CLIENT_ID = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H";
 const CLIENT_SECRET = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS";
 const VERSION = "20181103";
-
+// const endPoint = "https://api.foursquare.com/v2/venues/explore?"
 class MapComponent extends Component {
   state = {
     // Create a map variable
@@ -14,7 +14,7 @@ class MapComponent extends Component {
     // Create a new blank array for all the listing markers.
     markers: [],
     markerProps: [],
-    places: [],
+    places: "",
     currentMarker: null,
     currentMarkerProps: null,
     openInfoWindow: false
@@ -22,15 +22,15 @@ class MapComponent extends Component {
 
   componentDidMount = () => {}
 
-  componentWillReceiveProps = (props) => {
+  componentWillReceiveProps(props) {
     this.setState({firstDrop: false});
 
     // Do not update input if it's not dynamic
     if (this.state.markers.length !== props.places.length) {
-      this.closeInfoWindow();
-      this.updateMarkers(props.places);
-      this.setState({currentMarker: null});
-      return;
+        this.closeInfoWindow();
+        this.updateMarkers(props.places);
+        this.setState({currentMarker: null});
+        return;
     }
 
     //  Get options to compare
@@ -153,9 +153,7 @@ class MapComponent extends Component {
   render = () => {
     const style = {
       height: '100%',
-      width: '100%',
-      margin: '0',
-      padding: '0'
+      width: '100%'
     }
     const center = {
       lat: this.props.lat,

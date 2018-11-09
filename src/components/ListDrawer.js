@@ -17,7 +17,7 @@ class ListDrawer extends Component {
     },
     noBullets: {
       listStyleType: "none",
-      padding: 0
+      padding: "0px"
     },
     listLink: {
       background: "transparent",

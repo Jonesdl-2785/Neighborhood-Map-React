@@ -14,7 +14,7 @@ class App extends Component {
         lng: 	-80.848686,
         // venue: [],
          markers: [],
-        zoom: 12,
+        zoom: 8,
         // center: [],
         all: places,
         filtered: null,

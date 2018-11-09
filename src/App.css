@@ -1,7 +1,7 @@
 .App {
   text-align: center;
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
 }
 
 .App-logo {
@@ -33,12 +33,12 @@
   }
 }
 
-#map {
+/* #map {
   height: 100%;
 }
 /* Optional: Makes the sample page fill the window. */
-html, body {
+/* html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
+} */ 
