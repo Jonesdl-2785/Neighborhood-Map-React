@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-// import MapComponent from './components/Map';
 import MapComponent from './components/MapComponent';
-// import FourSquareAPI from './API/venue';
-import locations from './data/locations.json';
+import locations from './data/locations';
 import ListDrawer from './components/ListDrawer';
-//import { withStyles } from '@material-ui/core/styles';
-//import Button from '@material-ui/core/Button';
 import './App.css';
 
 class App extends Component {
@@ -17,24 +13,29 @@ class App extends Component {
         selectedIndex: null,
         all: locations,
         filtered: null,
-        open: false
+        open: false,
+        query: "",
       };
 
       styles = {
+        menu: {
+          background: "F0DE92"
+        },
         menuButton: {
            marginLeft: 10,
            marginRight: 20,
            position: "absolute",
            left: 10,
            top: 20,
-           background: "#ccc",
+           background: "#48546D",
            padding: 10
          },
          hide: {
            display: 'none'
          },
          header: {
-           marginTop: "0px"
+           marginTop: "0px",
+           background: "F0DE92"
          }
        };
 
@@ -42,9 +43,6 @@ class App extends Component {
         this.setState({
           ...this.state,
           filtered: this.filterLocations(this.state.all, ""),
-          // near: 'Davidson, NC',
-          // query: 'Ice Cream Shop',
-          // limit: 25
         });
       }
 
@@ -74,6 +72,7 @@ class App extends Component {
        return (
          <div className="App" role="main">
            <div id="map">
+           <div style={{height: '100%'}}></div>
              <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
               <i className="fa fa-bars"></i>
              </button>
@@ -95,7 +94,6 @@ class App extends Component {
              filterLocations={this.updateQuery}
              selectedIndex={this.state.selectedIndex}
              clickListItem={this.clickListItem}/>
-
          </div>
      );
    }

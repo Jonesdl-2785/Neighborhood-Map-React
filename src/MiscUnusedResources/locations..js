@@ -1,4 +1,4 @@
-
+export default
  [ 
   {
     "name": "Bean Vegan Cuisine",
@@ -130,4 +130,4 @@
     "url": "http://www.twoscoopscreamery.com/",
     "pos": {"lat":35.221905,"lng":-90.822442}
   }
-]
+];

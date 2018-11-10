@@ -268,3 +268,17 @@ testing to see if able to merge
 // export default GoogleApiWrapper({
 //   apiKey: MAP_KEY
 // })(MapComponent)
+{/* // const NavBar = (props) => {
+//     return (
+//       <div> 
+//         <AppBar position="static">
+//           <ToolBar>
+//             <Typography variant="title" color="inherit">
+//               <h1>Davidson, NC Vegan Restaurants 
+//               </h1>
+//             </Typography>
+//           </ToolBar>
+//         </AppBar>
+//       </div>
+//     )
+// } */}

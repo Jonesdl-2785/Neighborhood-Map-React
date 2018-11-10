@@ -15,7 +15,6 @@ This is a SPA (single page application) Map App built using React and features i
 Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/).
 ## Requirements
 - npm:
-
 -- npm install --save google-map-react
  or
 - yarn:
@@ -33,12 +32,29 @@ Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesd
 -- Run npm start
 ## Resources
 -### Tools <br>
--### Other Resources
+--- Atom editor <br>
+--- Adobe Color CC <br>
+--- Git Version control <br>
+--- GitHub <br>
+--- Heroku
 
-## Project Skeleton
+-### Other Resources
+--- Material UI <br>
+--- [Foursquare API](https://developer.foursquare.com/)<br>
+--- [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) <br>
+--- [Google Maps React](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/)
 
 ## Author
+- Diane L. Jones
 ## License
+- MIT
 ## Credits
+-- Udacity Resources
+  [FEND](https://sites.google.com/udacity.com/gwgdevscholarship/fend/fend-resources) <br>
+-- Udacity Mentors
+   Sachin Sharma, Doug Brown
 
 ## Project Future Development
+1.  Add additional animation to markers
+2.  Expand search and location parameters
+3.  Update overall design of app

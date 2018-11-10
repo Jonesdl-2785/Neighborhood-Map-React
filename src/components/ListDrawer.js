@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Drawer from "@material-ui/core/Drawer";
-import  { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+
 class ListDrawer extends Component {
   state = {
     open: false,
@@ -11,7 +10,10 @@ class ListDrawer extends Component {
   styles = {
     list: {
       width: "250px",
-      padding: "0px 15px 0px"
+      padding: "0px 15px 0px",
+      height: "100%",
+      background: "#F0DE92",
+      color: "#fff"
     },
     fullList: {
       width: "auto"
@@ -23,7 +25,7 @@ class ListDrawer extends Component {
     listLink: {
       background: "transparent",
       border: "none",
-      color: "black"
+      color: "fff"
     },
     filterEntry: {
       border: "1px solid #ccc",
@@ -32,8 +34,9 @@ class ListDrawer extends Component {
       width: "100%"
     },
     listItem: {
-       marginBottom: "15px"
-    }
+       marginBottom: "15px",
+       color: "fff"
+    },
   };
 
   // toggleDrawer = (side, open) => () => {

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.3.2",
+    "contentful": "^7.0.5",
     "google-map-react": "^1.0.9",
     "google-maps-react": "^2.0.2",
     "react": "^16.6.0",

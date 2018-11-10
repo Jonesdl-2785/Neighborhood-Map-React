@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-// import GoogleMapReact from 'google-map-react';
 import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import NoMapDisplay from './NoMapDisplay';
 
 const MAP_KEY = "AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g";
 const CLIENT_ID = "AZ30DSQHOMZTZLHWUD55U54GUUDWZRAQW0D2DLFWAEPPW51H";
 const CLIENT_SECRET = "3H0LURYGH1EB1WTIO3WSN4M5YF35ZCGEKSEEQ2KTU5FV1RYS";
 const VERSION = "20181103";
+const errorMsg = "";
 // const endPoint = "https://api.foursquare.com/v2/venues/explore?"
 
 class MapComponent extends Component {
@@ -46,7 +47,7 @@ class MapComponent extends Component {
 
     if (props.selectedIndex === null || typeof(props.selectedIndex) === 'undefined') {
       return;
-    };
+    }
 
     // Initialize with new options
     this.onMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex]);
@@ -95,7 +96,7 @@ class MapComponent extends Component {
   onMarkerClick2 = (props, marker, event) => {
     this.closeInfoWindow();
 
-    let url = `https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=50&ll=${props.position.lat},${props.position.lng}&llAcc=50`;
+    let url = `https://api.foursquare.com/v2/venues/search?cat=restaurants&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`;
     let headers = new Headers();
     let request = new Request(url, {
       method: 'GET',
@@ -110,9 +111,9 @@ class MapComponent extends Component {
           activeMarkerProps = {
               ...props,
               foursquare: restaurant[0],
-              // near: 'Davidson, NC',
-              // query: 'Ice Cream Shop',
-              // limit: 15
+//              near: 'Davidson, NC',
+//              query: 'Ice Cream Shop',
+//              limit: 15
           };
 
           if (activeMarkerProps.foursquare) {
@@ -153,7 +154,6 @@ class MapComponent extends Component {
         url: location.url
       };
       markerProps.push(mProps);
-
       let animation = this.state.firstDrop ? this.props.google.maps.Animation.DROP : null;
       let marker = new this //{google.maps.Marker}
           .props
@@ -213,8 +213,11 @@ class MapComponent extends Component {
               </div>
             ) : ""
           }
+          {/* If an error occurs */}
+          {errorMsg !== "" ? <p>Oops, that wasn't expected. Please try again.</p> : <p></p>}
         </div>
       </InfoWindow>
+      <NoMapDisplay></NoMapDisplay>
     </Map>
     )
   }
