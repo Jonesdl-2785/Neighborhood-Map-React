@@ -75,6 +75,24 @@ class MapComponent extends Component {
   }
 
   onMarkerClick = (props, marker, event) => {
+    // this.closeInfoWindow();
+    if (this.state.activeMarker) {
+      this.state.activeMarker.setAnimation(null);
+    }
+
+    if (marker) {
+      marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+      const activeMarkerProps = this.state.markerProps[props.i];
+      this.setState({
+        showingInfoWindow: true,
+        activeMarker: marker,
+        activeMarkerProps: activeMarkerProps
+      });
+    }
+  }
+
+
+  onMarkerClick2 = (props, marker, event) => {
     this.closeInfoWindow();
 
     let url = `https://api.foursquare.com/v2/venues/search?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=50&ll=${props.position.lat},${props.position.lng}&llAcc=50`;
@@ -176,9 +194,10 @@ class MapComponent extends Component {
         initialCenter={center}
         zoom={this.props.zoom}
         onClick={this.closeInfoWindow}>
-      <InfoWindow
+
+        <InfoWindow
         marker={this.state.activeMarker}
-        isVisible={this.state.showingInfoWindow}
+        visible={this.state.showingInfoWindow}
         onClose={this.onInfoWindowClose}>
         <div>
             <h3>{amProps && amProps.name}</h3>
@@ -188,7 +207,7 @@ class MapComponent extends Component {
             {amProps && amProps.images ? (
               <div>
                 <img
-                  alt={amProps.name + ' restaurant photo'}
+                  alt={amProps.name + ' photo'}
                   src={amProps.images.items[0].prefix + '100x100' + amProps.images.items[0].suffix}/>
                   <p>Courtesy of Foursquare</p>
               </div>

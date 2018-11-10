@@ -33,11 +33,11 @@ Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesd
 -- Run npm start
 ## Resources
 -### Tools <br>
--### Other reousrces
+-### Other Resources
 
 ## Project Skeleton
 
-## Auutor
+## Author
 ## License
 ## Credits
 

@@ -12,10 +12,9 @@ class App extends Component {
       state = {
         lat: 	35.499302,
         lng: 	-80.848686,
-        // venue: [],
         markers: [],
-        zoom: 8,
-        // center: [],
+        zoom: 12,
+        selectedIndex: null,
         all: locations,
         filtered: null,
         open: false
