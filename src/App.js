@@ -80,7 +80,9 @@ class App extends Component {
          <div className="App" id="main">
            <div id="map" role="application">
            <div style={{height: '100%'}}>
+             <div role="heading" aria-level="1">
               <h2 id="title">Davidson, NC - Vegan Restaurants</h2>
+            </div>
            </div>
            <div id="button">
              <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
