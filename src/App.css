@@ -36,6 +36,7 @@
 
 #map {
   height: 100%;
+  cursor: pointer;
 }
 /* Optional: Makes the sample page fill the window. */
  /* html, body {
