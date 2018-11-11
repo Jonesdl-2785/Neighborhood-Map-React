@@ -60,16 +60,19 @@ class ListDrawer extends Component {
               type="text"
               placeholder="Search"
               name="filter"
+              aria-labelledby="Search for a location"
+              role="search"
               onChange={event => this.updateQuery(event.target.value)}
               value={this.state.query} />
-            <ul style={this.styles.noBullets}>
+            <ul style={this.styles.noBullets} tabIndex="1">
               {this.props.locations &&
                 this.props.locations.map((location, i) => {
                   return (
-                    <li style={this.styles.listItem} key={i}>
-                      <button
+                    <li style={this.styles.listItem} key={i} tabIndex="2" >
+                      <button tabIndex="0"
                           style={this.styles.listLink} key={i}
                           onClick={event => this.props.clickListItem(i)}>{location.name}
+
                       </button>
                     </li>
                   );

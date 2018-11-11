@@ -14,6 +14,8 @@ This is a SPA (single page application) Map App built using React and features i
 ## Project Demo
 Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/).
 [GitHub](https://jonesdl-2785.github.io/Neighborhood-Map-React/)
+
+
 ## Requirements
 - npm:
 -- npm install --save google-map-react
@@ -25,12 +27,21 @@ Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/).
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - Google Maps API (or other Map api)
 - Third Party API [Foursquare](https://developer.foursquare.com/)
+
 ## How to Install
 Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesdl-2785/Neighborhood-Map-React.git)
 -- Create a directry for the project on your local machine.
 -- Change to your newly created directory.
 -- Run npm install
 -- Run npm start
+
+## To view in Browser
+
+Local:            http://localhost:3000/ shown in your terminal when compiled
+On Your Network:  http://123.456.7.89:3000/ shown in your terminal when compiled
+Note that the development build is not optimized.
+To create a production build, use `npm run build` - see #MISC.
+
 ## Resources
 - Tools <br>
 - Atom editor <br>
@@ -44,10 +55,16 @@ Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesd
 - [Foursquare API](https://developer.foursquare.com/)<br>
 - [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) <br>
 - [Google Maps React](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/)
+- MDN
+[developer.mozilla.org](MDN Web Docs)
+- W3Schools
+[w3shools.com](W3Schools)
 
 ## Misc
 - ServiceWorker is used in Production build only.
-- npm run serve
+  1. Run: `npm run build` to optimize the Project
+  2. Deploy: `npm run deploy` to deploy to the address specified  
+- `npm run serve`
 - Local host 5000
 
 ##Author

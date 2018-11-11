@@ -134,6 +134,9 @@ class MapComponent extends Component {
             marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
             this.setState({showingInfoWindow: true, activeMarker: marker, activeMarkerProps});
         }
+    }).catch((error) => {
+        alert('Failed to fetch URL')
+        console.log(error)
     })
 
   }
@@ -186,7 +189,6 @@ class MapComponent extends Component {
 
     return (
       <Map
-        role='application'
         aria-label='map'
         google={this.props.google}
         onReady={this.mapReady}

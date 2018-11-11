@@ -45,6 +45,12 @@ class App extends Component {
           filtered: this.filterLocations(this.state.all, ""),
         });
       }
+      // Error Handling
+      // https://medium.com/@sgroff04/2-minutes-to-learn-react-16s-componentdidcatch-lifecycle-method-d1a69a1f753
+      componentDidCatch(error, errorInfo) {
+        alert('Google maps could not be loaded. Please, try again.')
+        console.log(error)
+      }
 
       toggleDrawer = () => {
         this.setState({
@@ -70,8 +76,8 @@ class App extends Component {
 
      render = () => {
        return (
-         <div className="App" role="main">
-           <div id="map">
+         <div className="App" id="main">
+           <div id="map" role="application">
            <div style={{height: '100%'}}></div>
              <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
               <i className="fa fa-bars"></i>
