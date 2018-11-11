@@ -45,6 +45,11 @@ Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesd
 --- [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) <br>
 --- [Google Maps React](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/)
 
+## Misc
+-- ServiceWorker is used in Production build only.
+-- npm run ServiceWorker
+-- Local host 5000
+
 ## Author
 - Diane L. Jones
 ## License
