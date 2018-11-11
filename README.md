@@ -50,15 +50,17 @@ Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesd
 - npm run serve
 - Local host 5000
 
-## Author
+##Author
 Diane L. Jones
-## License
+
+##License
 MIT
-## Credits
+
+##Credits
 Udacity Resources
-  [FEND](https://sites.google.com/udacity.com/gwgdevscholarship/fend/fend-resources) <br>
+[FEND](https://sites.google.com/udacity.com/gwgdevscholarship/fend/fend-resources) <br>
 - Udacity Mentors
-   Sachin Sharma, Doug Brown
+  Sachin Sharma, Doug Brown
 
 ## Project Future Development
 1.  Add additional animation to markers
