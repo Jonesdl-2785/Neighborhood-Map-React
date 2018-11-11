@@ -32,32 +32,32 @@ Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesd
 -- Run npm install
 -- Run npm start
 ## Resources
--### Tools <br>
---- Atom editor <br>
---- Adobe Color CC <br>
---- Git Version control <br>
---- GitHub <br>
---- Heroku
+- Tools <br>
+- Atom editor <br>
+- Adobe Color CC <br>
+- Git Version control <br>
+- GitHub <br>
+- Heroku
 
--### Other Resources
---- Material UI <br>
---- [Foursquare API](https://developer.foursquare.com/)<br>
---- [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) <br>
---- [Google Maps React](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/)
+## Other Resources
+- Material UI <br>
+- [Foursquare API](https://developer.foursquare.com/)<br>
+- [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) <br>
+- [Google Maps React](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/)
 
 ## Misc
--- ServiceWorker is used in Production build only.
--- npm run ServiceWorker
--- Local host 5000
+- ServiceWorker is used in Production build only.
+- npm run serve
+- Local host 5000
 
 ## Author
 - Diane L. Jones
 ## License
 - MIT
 ## Credits
--- Udacity Resources
+Udacity Resources
   [FEND](https://sites.google.com/udacity.com/gwgdevscholarship/fend/fend-resources) <br>
--- Udacity Mentors
+- Udacity Mentors
    Sachin Sharma, Doug Brown
 
 ## Project Future Development

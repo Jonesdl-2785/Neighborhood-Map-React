@@ -96,7 +96,7 @@ class MapComponent extends Component {
   onMarkerClick2 = (props, marker, event) => {
     this.closeInfoWindow();
 
-    let url = `https://api.foursquare.com/v2/venues/search?cat=restaurants&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`;
+    let url = `https://api.foursquare.com/v2/venues/explore?cat=restaurant&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}&radius=100&ll=${props.position.lat},${props.position.lng}&llAcc=100`;
     let headers = new Headers();
     let request = new Request(url, {
       method: 'GET',
@@ -117,7 +117,7 @@ class MapComponent extends Component {
           };
 
           if (activeMarkerProps.foursquare) {
-            let url = `https://api.foursquare.com/v2/venues/${restaurant[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
+            let url = `https://api.foursquare.com/v2/venues/explore?${restaurant[0].id}/photos?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&v=${VERSION}`;
             fetch(url)
                 .then(response => response.json())
                 .then(result => {
