@@ -51,9 +51,9 @@ Project can be cloned or downloaded from [Git Repository] (git@github.com:Jonesd
 - Local host 5000
 
 ## Author
-- Diane L. Jones
+Diane L. Jones
 ## License
-- MIT
+MIT
 ## Credits
 Udacity Resources
   [FEND](https://sites.google.com/udacity.com/gwgdevscholarship/fend/fend-resources) <br>
