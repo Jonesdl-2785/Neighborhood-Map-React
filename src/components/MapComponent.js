@@ -177,7 +177,7 @@ class MapComponent extends Component {
 
   render = () => {
     const style = {
-      height: '100%',
+      // height: '100%',
       width: '100%'
     }
     const center = {

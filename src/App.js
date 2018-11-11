@@ -35,7 +35,8 @@ class App extends Component {
          },
          header: {
            marginTop: "0px",
-           background: "F0DE92"
+           background: "F0DE92",
+           posittion: "fixed"
          }
        };
 
@@ -78,11 +79,15 @@ class App extends Component {
        return (
          <div className="App" id="main">
            <div id="map" role="application">
-           <div style={{height: '100%'}}></div>
+           <div style={{height: '100%'}}>
+              <h2 id="title">Davidson, NC - Vegan Restaurants</h2>
+           </div>
+           <div id="button">
              <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
               <i className="fa fa-bars"></i>
              </button>
-             <h2>Davidson, NC - Vegan Restaurants</h2>
+            </div>
+
            </div>
            <MapComponent
              aria-label="Map"
