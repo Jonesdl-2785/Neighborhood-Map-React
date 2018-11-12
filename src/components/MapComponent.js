@@ -16,13 +16,16 @@ class MapComponent extends Component {
     // Create a new blank array for all the listing markers.
     markers: [],
     markerProps: [],
-    // locations: [],
     activeMarker: null,
     activeMarkerProps: null,
     showingInfoWindow: false
   };
 
-  componentDidMount = () => {}
+
+
+  componentDidMount = () => {
+    fetch('"https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g&v=3&callback=initMap')
+  }
 
   componentWillReceiveProps(props) {
     this.setState({ firstDrop: false });
@@ -40,17 +43,17 @@ class MapComponent extends Component {
     // const options = typeof input === 'function' ? input(props) : input;
 
     // Ignore when options are not changed
-    if (!props.selectedIndex || (this.state.activeMarker &&
-        (this.state.markers[props.selectedIndex] !== this.state.activeMarker))) {
+    if (!props.selectedLocation || (this.state.activeMarker &&
+        (this.state.markers[props.selectedLocation] !== this.state.activeMarker))) {
         this.closeInfoWindow();
     }
 
-    if (props.selectedIndex === null || typeof(props.selectedIndex) === 'undefined') {
+    if (props.selectedLocation === null || typeof(props.selectedLocation) === 'undefined') {
       return;
     }
 
     // Initialize with new options
-    this.onMarkerClick(this.state.markerProps[props.selectedIndex], this.state.markers[props.selectedIndex]);
+    this.onMarkerClick(this.state.markerProps[props.selectedLocation], this.state.markers[props.selectedLocation]);
   }
 
   mapReady = (props, map) => {
@@ -75,6 +78,17 @@ class MapComponent extends Component {
         .filter(item => item.name.includes(props.name) || props.name.includes(item.name));
   }
 
+  addInfoWindow(props, marker, infowindow) {
+    if (infowindow.marker !== marker) {
+        this.setState.infowindow.marker = marker;
+        this.setState.infowindow.setContent('<div>' + marker.name + '</div>');
+        this.setState.infowindow.open(this.map, marker);
+        this.setState.infowindow.addListener('closeInfoWindow', function(){
+        this.setState.infowindow.setMarker= null;
+      })
+    }
+  }
+
   onMarkerClick = (props, marker, event) => {
     // this.closeInfoWindow();
     if (this.state.activeMarker) {
@@ -91,7 +105,6 @@ class MapComponent extends Component {
       });
     }
   }
-
 
   onMarkerClick2 = (props, marker, event) => {
     this.closeInfoWindow();
@@ -111,9 +124,6 @@ class MapComponent extends Component {
           activeMarkerProps = {
               ...props,
               foursquare: restaurant[0],
-//              near: 'Davidson, NC',
-//              query: 'Ice Cream Shop',
-//              limit: 15
           };
 
           if (activeMarkerProps.foursquare) {
@@ -136,7 +146,6 @@ class MapComponent extends Component {
         }
     }).catch((error) => {
         alert('Failed to fetch URL')
-        console.log(error)
     })
 
   }
@@ -177,8 +186,8 @@ class MapComponent extends Component {
 
   render = () => {
     const style = {
-      // height: '100%',
-      width: '100%'
+      height: '100vh',
+      width: '100vw'
     }
     const center = {
       lat: this.props.lat,

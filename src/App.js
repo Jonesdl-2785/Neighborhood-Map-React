@@ -14,14 +14,12 @@ class App extends Component {
         all: locations,
         filtered: null,
         open: false,
-        query: "",
+        query: ""
       };
+      //https://material-ui.com/demos/drawers/#responsive-drawer and Walkthrough Doug Brown
 
-      styles = {
-        menu: {
-          background: "F0DE92"
-        },
-        menuButton: {
+      styles = theme => ({
+        listMenuBtn: {
            marginLeft: 10,
            marginRight: 20,
            position: "absolute",
@@ -38,7 +36,7 @@ class App extends Component {
            background: "F0DE92",
            posittion: "fixed"
          }
-       };
+       });
 
        componentDidMount = () => {
         this.setState({
@@ -84,8 +82,8 @@ class App extends Component {
               <h2 id="title">Davidson, NC - Vegan Restaurants</h2>
             </div>
            </div>
-           <div id="button">
-             <button onClick={this.toggleDrawer} style={this.styles.menuButton}>
+           <div id="button" className="menuButton">
+             <button onClick={this.toggleDrawer} style={this.styles.listMenuBtn}>
               <i className="fa fa-bars"></i>
              </button>
             </div>
