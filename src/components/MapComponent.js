@@ -21,8 +21,6 @@ class MapComponent extends Component {
     showingInfoWindow: false
   };
 
-
-
   componentDidMount = () => {
     fetch('"https://maps.googleapis.com/maps/api/js?key=AIzaSyDnhUagyTDjkYrn1LE_He1k_33eOjBOA-g&v=3&callback=initMap')
   }
@@ -195,7 +193,12 @@ class MapComponent extends Component {
     }
 
     let amProps = this.state.activeMarkerProps;
-
+    // const bounds = new google.maps.LatLngBounds();
+    //   for (let i = 0; i < locations.length; i++) {
+    //     let position = locations[i].locations;
+    //     let name = locations[i].name;
+    //   }
+    //   bounds={bounds}
     return (
       <Map
         aria-label='map'

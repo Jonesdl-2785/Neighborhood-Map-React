@@ -17,7 +17,7 @@ class App extends Component {
         query: ""
       };
       //https://material-ui.com/demos/drawers/#responsive-drawer and Walkthrough Doug Brown
-
+    
       styles = theme => ({
         listMenuBtn: {
            marginLeft: 10,

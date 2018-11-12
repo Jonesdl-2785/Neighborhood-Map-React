@@ -38,3 +38,23 @@
   height: 100%;
   cursor: pointer;
 }
+
+.listMenuBtn {
+  margin-left: 10;
+  margin-right: 20;
+  position: absolute;
+  left: 10;
+  top: 20;
+  background-color: #48546D;
+  padding: 10;
+}
+
+.hide {
+  display: none;
+}
+
+.header {
+  margin-top: 0px;
+  background: #F0DE92;
+  position: fixed;
+}
