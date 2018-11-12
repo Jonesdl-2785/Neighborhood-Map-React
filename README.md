@@ -12,8 +12,9 @@ This is a SPA (single page application) Map App built using React and features i
 - Third Party API, Foursquare Provides venue information, if available.
 
 ## Project Demo
-Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/). <br>
+Live demo can be viewed [here](https://cryptic-mesa-49268.herokuapp.com/).
 
+### Repo
 [GitHub](https://jonesdl-2785.github.io/Neighborhood-Map-React/)
 
 
